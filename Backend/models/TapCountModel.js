@@ -1,30 +1,42 @@
 import mongoose from 'mongoose';
 
+// Define a schema to track tap counts for Products and Shops
 const tapCountSchema = new mongoose.Schema({
+  // The ID of the object (either a Product or Shop)
   objectId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    refPath: 'objectType', // Dynamically reference the model based on objectType
+    refPath: 'objectType', // Dynamic reference to the model specified in objectType
   },
+
+  // Specifies the type of the tapped object: 'Product' or 'Shop'
   objectType: {
     type: String,
     required: true,
-    enum: ['Product', 'Shop'], // Specifies whether it's a product or shop
+    enum: ['Product', 'Shop'], // Ensures only 'Product' or 'Shop' is allowed
   },
+
+  // Number of times the object has been tapped
   count: {
     type: Number,
-    default: 1, // Default count starts at 1, will increment on every tap
+    default: 1, // Starts with 1 when the first tap is recorded
   },
+
+  // Records the date and time the object was last tapped
   lastTappedAt: {
     type: Date,
-    default: Date.now, // Track the last time the product or shop was tapped
+    default: Date.now, // Automatically set to current date/time on creation
   },
+
+  // Records the date and time the first tap was recorded
   createdAt: {
     type: Date,
-    default: Date.now, // Track when the first tap was recorded
+    default: Date.now, // Automatically set to current date/time on creation
   },
 });
 
+// Create a Mongoose model from the schema
 const TapCount = mongoose.model('TapCount', tapCountSchema);
 
+// Export the model for use in other parts of the application
 export default TapCount;
