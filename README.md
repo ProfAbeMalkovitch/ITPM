@@ -10,7 +10,7 @@ Braille-and-Pen is an inclusive shopping platform designed to serve both visuall
 - Text-to-speech support (handled on frontend)
 - Firebase integration for media storage
 - Secure data handling and encrypted API communication
-- GDPR-compliant user data control
+- GDPR-compliant user data controls
 
 ---
 
